@@ -383,7 +383,7 @@ BinaryHeap.prototype = {
 
 var player;
 var playerMoving = false;
-var tileSize = 64;
+var tileSize = 32;
 var crates = [];
 var score = 0;
 
@@ -421,6 +421,40 @@ var level = [
 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];
 
+var level_tiles = [
+	[299, 236, 236, 236, 236, 236, 236, 236, 236, 236, 236, 236, 236, 319, 299, 236, 236, 236, 236, 236, 236, 236, 236, 236, 236, 236, 236, 319],
+	[217, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 215, 217, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 215],
+	[217, 131, 195, 196, 196, 197, 131, 195, 196, 196, 196, 197, 131, 215, 217, 131, 195, 196, 196, 196, 197, 131, 195, 196, 196, 197, 131, 215],
+	[217, 131, 215, 378, 378, 217, 131, 215, 378, 378, 378, 217, 131, 215, 217, 131, 215, 378, 378, 378, 217, 131, 215, 378, 378, 217, 131, 215],
+	[217, 131, 235, 236, 236, 237, 131, 235, 236, 236, 236, 237, 131, 235, 237, 131, 235, 236, 236, 236, 237, 131, 235, 236, 236, 237, 131, 215],
+	[217, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 215],
+	[217, 131, 195, 196, 196, 197, 131, 195, 197, 131, 195, 196, 196, 196, 196, 196, 196, 197, 131, 195, 197, 131, 195, 196, 196, 197, 131, 215],
+	[217, 131, 235, 236, 236, 237, 131, 215, 217, 131, 235, 236, 236, 319, 299, 236, 236, 237, 131, 215, 217, 131, 235, 236, 236, 237, 131, 215],
+	[217, 131, 131, 131, 131, 131, 131, 215, 217, 131, 131, 131, 131, 215, 217, 131, 131, 131, 131, 215, 217, 131, 131, 131, 131, 131, 131, 215],
+	[279, 196, 196, 196, 196, 197, 131, 215, 279, 196, 196, 197, 131, 215, 217, 131, 195, 196, 196, 378, 217, 131, 195, 196, 196, 196, 196, 339],
+	[378, 378, 378, 378, 378, 217, 131, 215, 299, 236, 236, 237, 131, 235, 237, 131, 235, 236, 236, 319, 217, 131, 215, 378, 378, 378, 378, 378],
+	[378, 378, 378, 378, 378, 217, 131, 215, 217, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 215, 217, 131, 215, 378, 378, 378, 378, 378],
+	[378, 378, 378, 378, 378, 217, 131, 215, 217, 131, 195, 196, 196, 196, 196, 196, 196, 197, 131, 215, 217, 131, 215, 378, 378, 378, 378, 378],
+	[378, 378, 378, 378, 378, 217, 131, 235, 237, 131, 215, 378, 378, 378, 378, 378, 378, 217, 131, 235, 237, 131, 215, 378, 378, 378, 378, 378],
+	[378, 378, 378, 378, 378, 217, 131, 131, 131, 131, 215, 378, 378, 378, 378, 378, 378, 217, 131, 131, 131, 131, 215, 378, 378, 378, 378, 378],
+	[378, 378, 378, 378, 378, 217, 131, 195, 197, 131, 215, 378, 378, 378, 378, 378, 378, 217, 131, 195, 197, 131, 215, 378, 378, 378, 378, 378],
+	[378, 378, 378, 378, 378, 217, 131, 215, 217, 131, 235, 236, 236, 236, 236, 236, 236, 237, 131, 215, 217, 131, 215, 378, 378, 378, 378, 378],
+	[378, 378, 378, 378, 378, 217, 131, 215, 217, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 215, 217, 131, 215, 378, 378, 378, 378, 378],
+	[378, 378, 378, 378, 378, 217, 131, 215, 217, 131, 195, 196, 196, 196, 196, 196, 196, 197, 131, 215, 217, 131, 215, 378, 378, 378, 378, 378],
+	[299, 236, 236, 236, 236, 237, 131, 235, 237, 131, 235, 236, 236, 319, 299, 236, 236, 237, 131, 235, 237, 131, 235, 236, 236, 236, 236, 319],
+	[217, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 215, 217, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 215],
+	[217, 131, 195, 196, 196, 197, 131, 195, 196, 196, 196, 197, 131, 215, 217, 131, 195, 196, 196, 196, 197, 131, 195, 196, 196, 197, 131, 215],
+	[217, 131, 235, 236, 319, 217, 131, 235, 236, 236, 236, 237, 131, 235, 237, 131, 235, 236, 236, 236, 237, 131, 215, 299, 236, 237, 131, 215],
+	[217, 131, 131, 131, 215, 217, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 215, 217, 131, 131, 131, 215],
+	[279, 196, 197, 131, 215, 217, 131, 195, 197, 131, 195, 196, 196, 196, 196, 196, 196, 197, 131, 195, 197, 131, 215, 217, 131, 195, 196, 339],
+	[299, 236, 237, 131, 235, 237, 131, 215, 217, 131, 235, 236, 236, 319, 299, 236, 236, 237, 131, 215, 217, 131, 235, 237, 131, 235, 236, 319],
+	[217, 131, 131, 131, 131, 131, 131, 215, 217, 131, 131, 131, 131, 215, 217, 131, 131, 131, 131, 215, 217, 131, 131, 131, 131, 131, 131, 215],
+	[217, 131, 195, 196, 196, 196, 196, 339, 279, 196, 196, 197, 131, 215, 217, 131, 195, 196, 196, 339, 279, 196, 196, 196, 196, 197, 131, 215],
+	[217, 131, 235, 236, 236, 236, 236, 236, 236, 236, 236, 237, 131, 235, 237, 131, 235, 236, 236, 236, 236, 236, 236, 236, 236, 237, 131, 215],
+	[217, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 131, 215],
+	[279, 196, 196, 196, 196, 196, 196, 196, 196, 196, 196, 196, 196, 196, 196, 196, 196, 196, 196, 196, 196, 196, 196, 196, 196, 196, 196, 339]
+  ];
+
 graph = new Graph(level);
 
 
@@ -454,7 +488,7 @@ Main.prototype = {
 		this.walls = this.game.add.group();
 		this.walls.enableBody = true;
 		this.walls.immovable = true;
-		this.walls.createMultiple(100, 'wall');
+		// this.walls.createMultiple(100, 'wall');
 		this.game.world.bringToTop(this.walls);
 
 		this.dots = this.game.add.group();
@@ -463,17 +497,17 @@ Main.prototype = {
 
 		this.drawLevel();
 
-		this.player = game.add.sprite(48 * 1, 32 * 1, "player");
+		this.player = game.add.sprite(tileSize * 1.5, tileSize * 1, "player");
 		this.game.physics.arcade.enable(this.player);
 		this.player.anchor.set(0.5);
 
-		this.ghost = game.add.sprite(32 * 25, 32 * 1, "ghost");
+		this.ghost = game.add.sprite(tileSize * 25, tileSize * 1, "ghost1");
 		this.game.physics.arcade.enable(this.ghost);
 
-		this.ghost1 = game.add.sprite(32 * 25, 32 * 29, "ghost");
+		this.ghost1 = game.add.sprite(tileSize * 25, tileSize * 29, "ghost2");
 		this.game.physics.arcade.enable(this.ghost1);
 
-		this.ghost2 = game.add.sprite(32 * 1, 32 * 29, "ghost");
+		this.ghost2 = game.add.sprite(tileSize * 1, tileSize * 29, "ghost3");
 		this.game.physics.arcade.enable(this.ghost2);
 
 		this.move(Phaser.DOWN);
@@ -498,9 +532,97 @@ Main.prototype = {
 			crates[i] = [];
 			for (var j = 0; j < level[i].length; j++) {
 				crates[i][j] = null;
-				switch (level[i][j]) {
-					case 0:
-						tile = game.add.sprite(32 * j, 32 * i, "wall");
+				switch (level_tiles[i][j]) {
+					case 195:
+						tile = game.add.sprite(tileSize * j, tileSize * i, "top-left");
+						this.game.physics.arcade.enable(tile);
+						tile.enableBody = true;
+						tile.body.immovable = true;
+						this.walls.add(tile);
+						break;
+
+					case 196:
+						tile = game.add.sprite(tileSize * j, tileSize * i, "top");
+						this.game.physics.arcade.enable(tile);
+						tile.enableBody = true;
+						tile.body.immovable = true;
+						this.walls.add(tile);
+						break;
+
+					case 197:
+						tile = game.add.sprite(tileSize * j, tileSize * i, "top-right");
+						this.game.physics.arcade.enable(tile);
+						tile.enableBody = true;
+						tile.body.immovable = true;
+						this.walls.add(tile);
+						break;
+
+					case 215:
+						tile = game.add.sprite(tileSize * j, tileSize * i, "left");
+						this.game.physics.arcade.enable(tile);
+						tile.enableBody = true;
+						tile.body.immovable = true;
+						this.walls.add(tile);
+						break;
+
+					case 217:
+						tile = game.add.sprite(tileSize * j, tileSize * i, "right");
+						this.game.physics.arcade.enable(tile);
+						tile.enableBody = true;
+						tile.body.immovable = true;
+						this.walls.add(tile);
+						break;
+
+					case 235:
+						tile = game.add.sprite(tileSize * j, tileSize * i, "bottom-left");
+						this.game.physics.arcade.enable(tile);
+						tile.enableBody = true;
+						tile.body.immovable = true;
+						this.walls.add(tile);
+						break;
+
+					case 236:
+						tile = game.add.sprite(tileSize * j, tileSize * i, "bottom");
+						this.game.physics.arcade.enable(tile);
+						tile.enableBody = true;
+						tile.body.immovable = true;
+						this.walls.add(tile);
+						break;
+
+					case 237:
+						tile = game.add.sprite(tileSize * j, tileSize * i, "bottom-right");
+						this.game.physics.arcade.enable(tile);
+						tile.enableBody = true;
+						tile.body.immovable = true;
+						this.walls.add(tile);
+						break;
+
+					case 199:
+						tile = game.add.sprite(tileSize * j, tileSize * i, "inner-top-right");
+						this.game.physics.arcade.enable(tile);
+						tile.enableBody = true;
+						tile.body.immovable = true;
+						this.walls.add(tile);
+						break;
+
+					case 235:
+						tile = game.add.sprite(tileSize * j, tileSize * i, "inner-bottom-right");
+						this.game.physics.arcade.enable(tile);
+						tile.enableBody = true;
+						tile.body.immovable = true;
+						this.walls.add(tile);
+						break;
+
+					case 239:
+						tile = game.add.sprite(tileSize * j, tileSize * i, "inner-bottom-left");
+						this.game.physics.arcade.enable(tile);
+						tile.enableBody = true;
+						tile.body.immovable = true;
+						this.walls.add(tile);
+						break;
+
+					case 259:
+						tile = game.add.sprite(tileSize * j, tileSize * i, "inner-top-left");
 						this.game.physics.arcade.enable(tile);
 						tile.enableBody = true;
 						tile.body.immovable = true;
@@ -584,17 +706,17 @@ Main.prototype = {
 		this.game.physics.arcade.collide(this.ghost, this.walls);
 
 
-		this.marker.x = this.math.snapToFloor(Math.floor(this.player.x), 32) / 32;
-		this.marker.y = this.math.snapToFloor(Math.floor(this.player.y), 32) / 32;
+		this.marker.x = this.math.snapToFloor(Math.floor(this.player.x), tileSize) / tileSize;
+		this.marker.y = this.math.snapToFloor(Math.floor(this.player.y), tileSize) / tileSize;
 
-		this.pos.x = this.math.snapToFloor(Math.floor(this.ghost.x), 32) / 32;
-		this.pos.y = this.math.snapToFloor(Math.floor(this.ghost.y), 32) / 32;
+		this.pos.x = this.math.snapToFloor(Math.floor(this.ghost.x), tileSize) / tileSize;
+		this.pos.y = this.math.snapToFloor(Math.floor(this.ghost.y), tileSize) / tileSize;
 
-		this.pos1.x = this.math.snapToFloor(Math.floor(this.ghost1.x), 32) / 32;
-		this.pos1.y = this.math.snapToFloor(Math.floor(this.ghost1.y), 32) / 32;
+		this.pos1.x = this.math.snapToFloor(Math.floor(this.ghost1.x), tileSize) / tileSize;
+		this.pos1.y = this.math.snapToFloor(Math.floor(this.ghost1.y), tileSize) / tileSize;
 
-		this.pos2.x = this.math.snapToFloor(Math.floor(this.ghost2.x), 32) / 32;
-		this.pos2.y = this.math.snapToFloor(Math.floor(this.ghost2.y), 32) / 32;
+		this.pos2.x = this.math.snapToFloor(Math.floor(this.ghost2.x), tileSize) / tileSize;
+		this.pos2.y = this.math.snapToFloor(Math.floor(this.ghost2.y), tileSize) / tileSize;
 		
 		this.directions[1] = level[this.marker.y][this.marker.x - 1]
 		this.directions[2] = level[this.marker.y][this.marker.x + 1]
@@ -633,7 +755,7 @@ Main.prototype = {
 		this.dots.removeAll();
 		var tile;
 		for (var i = 0; i < result.length; i++) {
-			tile = game.add.sprite(32 * result[i].y, 32 * result[i].x, "dot");
+			tile = game.add.sprite(tileSize * result[i].y, tileSize * result[i].x, "dot");
 				// this.game.physics.arcade.enable(tile);
 				// tile.enableBody = true;
 				// tile.body.immovable = true;
@@ -645,12 +767,12 @@ Main.prototype = {
 		var start = graph.grid[this.pos.y][this.pos.x];
 		var end = graph.grid[this.marker.y][this.marker.x];
 		var result = astar.search(graph, start, end);
-		console.log(result)
+		// console.log(result)
 
 		this.drawDots(result)
 
-		this.ghost.x = result[0].y * 32
-		this.ghost.y = result[0].x * 32
+		this.ghost.x = result[0].y * tileSize
+		this.ghost.y = result[0].x * tileSize
 
 	},
 
@@ -660,8 +782,8 @@ Main.prototype = {
 		var result = astar.search(graph, start, end);
 		// console.log(result[0].x)
 
-		this.ghost1.x = result[0].y * 32
-		this.ghost1.y = result[0].x * 32
+		this.ghost1.x = result[0].y * tileSize
+		this.ghost1.y = result[0].x * tileSize
 	},
 
 	ghostMove2: function () {
@@ -670,8 +792,8 @@ Main.prototype = {
 		var result = astar.search(graph, start, end);
 		// console.log(start)
 
-		this.ghost2.x = result[0].y * 32
-		this.ghost2.y = result[0].x * 32
+		this.ghost2.x = result[0].y * tileSize
+		this.ghost2.y = result[0].x * tileSize
 	},
 
 	gameOver: function(){

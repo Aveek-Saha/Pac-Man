@@ -13,7 +13,12 @@
     <style type="text/css">
         body {
             margin: 0;
+			background-color: black;
         }
+		canvas {
+			display : block;   
+			margin : auto;
+		}
     </style>
 	<script type="text/javascript">
 		window.addEventListener('resize', function () {
@@ -24,7 +29,7 @@
 
 				//Create a new game that fills the screen
 				// game = new Phaser.Game(window.width, window.innerHeight, Phaser.AUTO);
-				game = new Phaser.Game(window.innerHeight * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio, Phaser.AUTO);
+				game = new Phaser.Game((window.innerHeight) * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio, Phaser.AUTO);
 				
 				//Add all states
 				game.state.add("Boot", Boot);
