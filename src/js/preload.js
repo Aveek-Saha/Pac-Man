@@ -1,22 +1,20 @@
-import 'phaser';
+var Preload = function(game){};
 
-export default class PreloaderScene extends Phaser.Scene {
-  constructor () {
-    super('Preloader');
-  }
-  preload () {
+Preload.prototype = {
 
-	game.load.image('player', 'assets/player1.png');
-	game.load.image('ghost', 'assets/ghost.png');
-	game.load.image('dot', 'assets/dot.png');
-	game.load.spritesheet('pacman', 'assets/pacman.png', 32, 32);
+	preload: function(){ 
 
-	game.load.image('tiles', 'assets/sokoban_tilesheet.png');
-	game.load.image('wall', 'assets/wall.png');
-	game.load.tilemap('map', 'assets/map.json', null, Phaser.Tilemap.TILED_JSON);
+		game.load.image('player', 'src/assets/player1.png');
+		game.load.image('ghost', 'src/assets/ghost.png');
+		game.load.image('dot', 'src/assets/dot.png');
+		game.load.spritesheet('pacman', 'src/assets/pacman.png', 32, 32);
 
-  }
-  create () {
-	this.game.state.start("Main");
-  }
-};
+		game.load.image('tiles', 'src/assets/sokoban_tilesheet.png');
+		game.load.image('wall', 'src/assets/wall.png');
+		game.load.tilemap('map', 'src/assets/map.json', null, Phaser.Tilemap.TILED_JSON);
+	},
+
+	create: function(){
+		this.game.state.start("Main");
+	}
+}
