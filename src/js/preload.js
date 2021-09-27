@@ -3,7 +3,7 @@ var Preload = function(game){};
 Preload.prototype = {
 
 	preload: function(){ 
-			this.load.image("pacman-tiles", "../src/assets/monochrome_tilemap_packed.png");
+			// this.load.image("pacman-tiles", "../src/assets/monochrome_tilemap_packed.png");
 	
 			this.load.image('player', '../src/assets/player.png');
 			this.load.image('ghost1', '../src/assets/ghost1.png');
