@@ -3,7 +3,7 @@
 A re creation of the classic Pac-Man game created using Phaser. The ghosts use improved AI to track down Pac-Man
 
 ## Gameplay
-![Gameplay](https://github.com/Aveek-Saha/Pac-Man/raw/master/recording.gif)
+<img src="/images/output/recording.gif" width="250" height="auto"/>
 
 ### Play it here [Pac-Man](https://home.aveek.io/Pac-Man)
 
