@@ -2,15 +2,17 @@
 
 A re creation of the classic Pac-Man game created using Phaser. The ghosts use improved AI to track down Pac-Man.
 
-### Play it here [Pac-Man](https://home.aveek.io/Pac-Man)
+### Play it here: [Pac-Man](https://home.aveek.io/Pac-Man)
 
 ## Gameplay
 <img src="/recording.gif" width="250" height="auto"/>
 
 ## Development
 
-To start the dev server, run
+To develop, clone the repo and start the dev server
 ```
+git clone git@github.com:Aveek-Saha/Pac-Man.git
+cd Pac-Man
 npm start
 ```
 
