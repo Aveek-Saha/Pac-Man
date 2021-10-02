@@ -4,10 +4,6 @@ A re-creation of the classic Pac-Man game created using Phaser. The ghosts use i
 
 ### Play it here: [Pac-Man](https://home.aveek.io/Pac-Man)
 
-## Gameplay
-<img src="/recording.gif" width="250" height="auto"/>
-
-
 ## Ghost AI
 
 - The game map is represented as a 2D array where each cell has either a `0` or `1`. 
@@ -24,6 +20,9 @@ Use the arrow keys to control Pac-Man
 Move right: <kbd>🠊</kbd>  |  Move left: <kbd>🠈</kbd>  |  Move up: <kbd>🠉</kbd>  |  Move down: <kbd>🠋</kbd>
 
 The game ends when a ghost catches you, refresh the page to restart.
+
+## Gameplay
+<img src="/recording.gif" width="300" height="auto"/>
 
 ## Development
 
