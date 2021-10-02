@@ -4,11 +4,11 @@ A re-creation of the classic Pac-Man game created using Phaser. The ghosts use i
 
 ### Play it here: [Pac-Man](https://home.aveek.io/Pac-Man)
 
-### Gameplay
+## Gameplay
 <img src="/recording.gif" width="250" height="auto"/>
 
 
-## Ghost AI 👾
+## Ghost AI
 
 - The game map is represented as a 2D array where each cell has either a `0` or `1`. 
 - Walls are represented by `0` and `1` is a traversable path. 
@@ -17,14 +17,11 @@ A re-creation of the classic Pac-Man game created using Phaser. The ghosts use i
  
 Since Pac-Man's position is constantly changing, we only need to get the first step from the array of steps and move the ghost. The path that the ghosts take is highlighted by tracing the path returned by the A* function.
 
-## Controlling Pac-Man 🎮
+## Controlling Pac-Man
 
 Use the arrow keys to control Pac-Man
 
-Move right: <kbd>🠊</kbd>  |  
-Move left: <kbd>🠈</kbd>  |  
-Move up: <kbd>🠉</kbd>  |  
-Move down: <kbd>🠋</kbd>
+Move right: <kbd>🠊</kbd>  |  Move left: <kbd>🠈</kbd>  |  Move up: <kbd>🠉</kbd>  |  Move down: <kbd>🠋</kbd>
 
 The game ends when a ghost catches you, refresh the page to restart.
 
