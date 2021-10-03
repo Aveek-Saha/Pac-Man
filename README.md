@@ -8,8 +8,8 @@ A re-creation of the classic Pac-Man game created using Phaser. The ghosts use i
 
 - The game map is represented as a 2D array where each cell has either a `0` or `1`. 
 - Walls are represented by `0` and `1` is a traversable path. 
-- This 2D array is passed to the `A*` function which returns an array of steps the ghosts should follow to reach Pac-Man. 
-- The function uses the `A* algorithm` to find the best path for the ghosts to take.
+- This 2D array is passed to the `A*` function which returns an array of steps the ghosts should follow. 
+- The function uses the `A* algorithm` to find the best path for the ghosts to take to reach Pac-Man.
  
 Since Pac-Man's position is constantly changing, we only need to get the first step from the array of steps and move the ghost. The path that the ghosts take is highlighted by tracing the path returned by the A* function.
 
